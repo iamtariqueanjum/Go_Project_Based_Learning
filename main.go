@@ -32,16 +32,23 @@ func main(){
 		fmt.Println("Enter Task description: ")
 		scanner.Scan()
 		task_desc := scanner.Text()
+		task := Task{
+			id: uint(task_id),
+			name: task_name,
+			description: task_desc,
+		}
+		tasks = append(tasks, task)
 		fmt.Println("---------------Task details:---------------")
 		fmt.Printf("Id: %v\n", task_id)
 		fmt.Printf("Name: %v\n", task_name)
 		fmt.Printf("Description: %v\n", task_desc)
 		fmt.Println("-------------------------------------------")
-		fmt.Println("Enter 0 to exit...")
-		var exit uint
-		fmt.Scan(&exit)
-		if exit == 0 {
-			break
-		}
+		fmt.Printf("Tasks: %v\n", tasks)
+		// fmt.Println("Enter 0 to exit...")
+		// var exit uint
+		// fmt.Scan(&exit)
+		// if exit == 0 {
+		// 	break
+		// }
 	}
 }
