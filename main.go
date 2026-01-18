@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -15,8 +16,9 @@ type Task struct {
 var tasks []Task
 
 func main() {
+	http.HandleFunc("/", helloUser)
+	http.ListenAndServe(":8080", nil)
 
-	fmt.Println("Welcome to Go TaskPlanner!")
 	fmt.Println("What should i call you? (Enter Username):")
 	var userName string
 	fmt.Scan(&userName)
@@ -55,4 +57,9 @@ func main() {
 	for _, task := range tasks {
 		fmt.Printf("%d. Task: %s Description: %s\n", task.id, task.name, task.description)
 	}
+}
+
+func helloUser(writer http.ResponseWriter, request *http.Request) {
+	var greeting = "Welcome to Go TaskPlanner!"
+	fmt.Fprintf(writer, greeting)
 }
